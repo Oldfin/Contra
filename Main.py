@@ -23,7 +23,8 @@ class Game(arcade.Window):
         self.bill.draw()
 
     def update(self, delta_time):
-        pass
+        if self.game:
+            self.bill.update()
 
     def on_key_press(self, key, modifiers):
         pass
