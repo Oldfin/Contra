@@ -13,6 +13,7 @@ class Game(arcade.Window):
         self.index_texture = 0
         self.game = True
         self.bill = bill.Bill()
+        self.is_walk = False
 
     def setup(self):
         pass
@@ -25,12 +26,28 @@ class Game(arcade.Window):
     def update(self, delta_time):
         if self.game:
             self.bill.update()
+            if self.is_walk:
+                self.bill.update_animation(delta_time)
 
     def on_key_press(self, key, modifiers):
-        pass
+        if key == arcade.key.A:
+            self.is_walk = True
+            self.bill.change_x = -PLAYER_MOVEMENT_SPEED
+            self.bill.side = True
+            self.bill.set_side()
+        if key == arcade.key.D:
+            self.is_walk = True
+            self.bill.change_x = PLAYER_MOVEMENT_SPEED
+            self.bill.side = False
+            self.bill.set_side()
+        if key == arcade.key.S:
+            self.bill.to_down()
 
     def on_key_release(self, key, modifiers):
-        pass
+        if key == arcade.key.A or arcade.key.D or arcade.key.S:
+            self.bill.change_x = 0
+            self.is_walk = False
+            self.bill.set_texture(0)
 
 
 window = Game(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
