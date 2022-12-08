@@ -11,6 +11,7 @@ class Bill(animate.Animate):
         self.side = False
         self.left_textures = []
         self.right_textures = []
+        self.jump = False
         for i in range(6):
             self.left_textures.append(arcade.load_texture(f'go_bill/{i}.gif', flipped_horizontally=True))
             self.right_textures.append(arcade.load_texture(f'go_bill/{i}.gif'))
@@ -22,6 +23,18 @@ class Bill(animate.Animate):
             self.textures = self.left_textures
         else:
             self.textures = self.right_textures
+
+    def back_left(self):
+        if self.left > SCREEN_WIDTH:
+            self.center_x = 0
+            return True
+        return False
+
+    def back_right(self):
+        if self.right < 0:
+            self.center_x = SCREEN_WIDTH
+            return True
+        return False
 
     def to_down(self):
         if self.side:

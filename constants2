@@ -1,26 +1,26 @@
+# задаем ширину, высоту и заголовок окна
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SCREEN_TITLE = "Contra"
-GRAVITY = 1
 
 SCALING = 2
 PLAYER_MOVEMENT_SPEED = 5
 JUMP = 15
-
-COORDS = [
+GRAVITY = 1
+COORDS = [  
             [
                 [240, 210],
                 [300, 210]
             ],
             [
                 [-100,0]
-            ],
+            ], 
             [
                 [637, 210],
                 [667, 210],
                 [730, 405],
                 [750, 405],
-            ],
+            ], 
             [
                 [0, 405],
                 [53, 405],
