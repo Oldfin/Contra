@@ -4,14 +4,17 @@ from constants import *
 
 
 class Bill(animate.Animate):
-    def __init__(self):
+    def __init__(self, window):
         super().__init__('go_bill/0.gif', scale=SCALING)
+        self.window = window
         self.center_x = 100
         self.center_y = 100
         self.side = False
         self.left_textures = []
         self.right_textures = []
         self.jump = False
+        self.pain_sound = arcade.load_sound('sounds/pain.wav')
+        self.lives = 3
         for i in range(6):
             self.left_textures.append(arcade.load_texture(f'go_bill/{i}.gif', flipped_horizontally=True))
             self.right_textures.append(arcade.load_texture(f'go_bill/{i}.gif'))
@@ -45,3 +48,6 @@ class Bill(animate.Animate):
     def update(self):
         self.center_x += self.change_x
         self.center_y += self.change_y
+        if self.lives <= 0:
+            self.kill()
+            self.window.game = False
